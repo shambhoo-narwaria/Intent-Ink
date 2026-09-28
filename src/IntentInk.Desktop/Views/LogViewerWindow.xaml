@@ -6,7 +6,8 @@
         WindowStartupLocation="CenterScreen"
         Background="#0B0D14"
         Foreground="#E2E8F0"
-        FontFamily="Segoe UI">
+        FontFamily="Segoe UI"
+        Icon="pack://application:,,,/Assets/logo.png">
 
     <Window.Resources>
         <Style x:Key="LogButton" TargetType="Button">

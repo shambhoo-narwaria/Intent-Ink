@@ -141,7 +141,6 @@ The detailed engineering docs are in the [docs](docs/) folder:
 - [docs/replacement-pipeline.md](docs/replacement-pipeline.md) — capture and replacement details
 - [docs/model-setup.md](docs/model-setup.md) — model setup and prompt contract
 - [docs/configuration.md](docs/configuration.md) — settings and logging
-- [docs/adapter-compatibility.md](docs/adapter-compatibility.md) — compatibility notes
 
 ---
 

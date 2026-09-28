@@ -10,6 +10,7 @@
         ShowActivated="False"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
+        Icon="pack://application:,,,/Assets/logo.png"
         FontFamily="Segoe UI, sans-serif"
         FontSize="12">
 
