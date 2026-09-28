@@ -1,0 +1,246 @@
+<Window x:Class="IntentInk.Desktop.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="IntentInk — Settings"
+        Height="620" Width="680"
+        WindowStartupLocation="CenterScreen"
+        Background="#0E1017"
+        Foreground="#E2E8F0"
+        FontFamily="Segoe UI"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow">
+
+    <Window.Resources>
+        <!-- Modern Card Style -->
+        <Style x:Key="SettingCard" TargetType="Border">
+            <Setter Property="Background" Value="#171A26"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="#252A3D"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="0,0,0,14"/>
+        </Style>
+
+        <!-- Section Title Style -->
+        <Style x:Key="SectionHeading" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#F8FAFC"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <Style x:Key="SectionDescription" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <!-- Primary Button -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#6C63FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#574EE8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Secondary Button -->
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#252A3D"/>
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#323850"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Text Box Style -->
+        <Style x:Key="DarkTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#10121A"/>
+            <Setter Property="Foreground" Value="#F8FAFC"/>
+            <Setter Property="CaretBrush" Value="#6C63FF"/>
+            <Setter Property="BorderBrush" Value="#2D334A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern CheckBox -->
+        <Style x:Key="DarkCheckBox" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#E2E8F0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <!-- Header -->
+            <RowDefinition Height="Auto"/>
+            <!-- Content -->
+            <RowDefinition Height="*"/>
+            <!-- Footer -->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Settings &amp; Preferences" FontSize="20" FontWeight="Bold" Foreground="#FFFFFF"/>
+            <TextBlock Text="Configure the local AI backend and privacy filters." 
+                       FontSize="12" Foreground="#94A3B8" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Main Settings Cards in ScrollViewer -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,0,10,0">
+
+                <!-- Card 1: Model & Backend -->
+                <Border Style="{StaticResource SettingCard}">
+                    <StackPanel>
+                        <TextBlock Text="Ollama AI Connection" Style="{StaticResource SectionHeading}"/>
+                        <TextBlock Text="Endpoint and model used for local offline inference." Style="{StaticResource SectionDescription}"/>
+
+                        <Grid Margin="0,0,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="TxtBaseUrl" Style="{StaticResource DarkTextBox}" Margin="0,0,8,0"/>
+                            <Button Grid.Column="1" x:Name="BtnRefreshModels" Content="Detect Models" 
+                                    Style="{StaticResource SecondaryButton}" Click="BtnRefreshModels_Click"/>
+                        </Grid>
+
+                        <TextBlock Text="Installed Model:" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="CmbModels" Height="32" Background="#10121A" Foreground="#F8FAFC"
+                                  BorderBrush="#2D334A" Padding="6,4"/>
+
+                        <TextBlock x:Name="TxtStatus" Text="Ready" FontSize="11" Foreground="#10B981" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Card 2: Text Limits -->
+                <Border Style="{StaticResource SettingCard}">
+                    <StackPanel>
+                        <TextBlock Text="Text Limits" Style="{StaticResource SectionHeading}"/>
+                        <TextBlock Text="Limit the amount of text sent to the local model." Style="{StaticResource SectionDescription}"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Maximum Text Length (characters)" FontSize="12" Foreground="#E2E8F0"/>
+                                <TextBlock Text="Fields larger than this limit are excluded for speed and safety." FontSize="11" Foreground="#64748B"/>
+                            </StackPanel>
+                            <TextBox Grid.Column="1" x:Name="TxtTextLimit" Style="{StaticResource DarkTextBox}" Width="70" Text="1500"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Card 3: App Exclusions -->
+                <Border Style="{StaticResource SettingCard}">
+                    <StackPanel>
+                        <TextBlock Text="Excluded Applications" Style="{StaticResource SectionHeading}"/>
+                        <TextBlock Text="Process names where IntentInk should never read or suggest text (e.g. keepass, devenv)." Style="{StaticResource SectionDescription}"/>
+
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="TxtNewExcludedProcess" Style="{StaticResource DarkTextBox}" Margin="0,0,8,0"/>
+                            <Button Grid.Column="1" x:Name="BtnAddExclusion" Content="Add Process" 
+                                    Style="{StaticResource SecondaryButton}" Click="BtnAddExclusion_Click"/>
+                        </Grid>
+
+                        <ListBox x:Name="LstExcludedProcesses" Height="90" Background="#10121A" Foreground="#E2E8F0"
+                                 BorderBrush="#2D334A" BorderThickness="1"/>
+
+                        <Button x:Name="BtnRemoveExclusion" Content="Remove Selected" 
+                                Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" Margin="0,6,0,0"
+                                Click="BtnRemoveExclusion_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Card 4: System Integration -->
+                <Border Style="{StaticResource SettingCard}">
+                    <StackPanel>
+                        <TextBlock Text="System Startup" Style="{StaticResource SectionHeading}"/>
+                        <CheckBox x:Name="ChkRunAtSignIn" Content="Start IntentInk automatically when I sign in to Windows" 
+                                  Style="{StaticResource DarkCheckBox}"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Actions -->
+        <Grid Grid.Row="2" Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button x:Name="BtnOpenLogs" Content="Open Log Directory" 
+                        Style="{StaticResource SecondaryButton}" Click="BtnOpenLogs_Click"/>
+            </StackPanel>
+
+            <Button Grid.Column="2" x:Name="BtnCancel" Content="Cancel" 
+                    Style="{StaticResource SecondaryButton}" Margin="0,0,10,0" Click="BtnCancel_Click"/>
+
+            <Button Grid.Column="3" x:Name="BtnSave" Content="Save Preferences" 
+                    Style="{StaticResource PrimaryButton}" Click="BtnSave_Click"/>
+        </Grid>
+    </Grid>
+</Window>
